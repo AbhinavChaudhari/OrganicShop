@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<div class="">
+    <h4 class="text-uppercase card p-3"> Remaining stock</h4>
+
+    <div class="">
+
+        {% for message in messages %}
+     
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            
+                {{message}}
+           
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %}
+
+        <form action="#" method="POST"> {% csrf_token %}
+            <div class="row">
+
+               
+                <div class="col-md-2"> 
+                    <div class="form-group">
+                        
+                        <input required type="text" class="form-control text-center" name="batch_sr_no" id="batch_sr_no"
+                            aria-describedby="helpId" required placeholder="Batch Serial No">
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        
+                        <input required type="text" class="form-control text-center" name="stock_name" id="stock_name"
+                            aria-describedby="helpId" required placeholder="Stock Name">
+
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        
+                        <input required type="number" class="form-control text-center" name="pack" id="pack"
+                            aria-describedby="helpId" required placeholder="Pack">
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group form-group-sm">
+                        
+                        <input required type="number" class="form-control text-center" name="qty" id="qty"
+                            aria-describedby="helpId" onKeyUp="multiply()" required placeholder="Quantity">
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        
+                        <input type="text " class="form-control" name="size" id="size" placeholder="Size Unit">
+                       
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                      
+                       
+                      <select  class="form-control" name="unit" id="unit" >
+                        <option value="KG">KG</option>
+                        <option value="Gram">Gram</option>
+                        <option value="LTR">LTR</option>
+                      </select>
+                      
+                    </div>
+                </div>
+
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        
+                        <input required type="number" class="form-control text-center" onKeyUp="multiply()" name="vandor_price" id="vandor_price"
+                            aria-describedby="helpId" required placeholder="Vandor Price">
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group form-group-sm">
+                        
+                        <input required type="number" class="form-control text-center" name="selling_price" id="selling_price"
+                            aria-describedby="helpId" required placeholder="Selling Price">
+
+                    </div>
+                </div>
+                
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success px-5 mb-2"> + Add</button>
+                </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="card mb-4 shadow-lg">
+
+
+    <div class="card-body">
+        <div class="table-responsive ">
+            
+            <table class="table table-bordered" id="searchTable"  data-page-length='10' width="100%" cellspacing="0">
+                <thead>
+                    <tr class="text-center">
+                    <th>ID</th>
+                        <th>Batch No</th>
+                        <th>Stock Name</th>
+                        <th>QTY</th>
+                        <th>pack</th>
+                        <th>size</th>
+                      
+                        <th>Selling Price</th>
+                        <th>Date</th>
+                        
+
+                    </tr>
+                </thead>
+              
+
+                <tbody>
+                    {% for stock in stocks %}
+                    <tr class="text-center">
+                        <td>{{forloop.counter}}</td>
+                        <td>{{ stock.batch_sr_no }}</td>
+                        <td>{{ stock.stock_name }}</td>
+                        <td>{{ stock.qty }}</td>
+                        <td>{{ stock.pack }}</td>
+                        <td>{{ stock.size }}</td>
+                        <td>{{ stock.selling_price }}</td>
+                        <td>{{ stock.date }}</td>
+                      
+                       
+                        
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}

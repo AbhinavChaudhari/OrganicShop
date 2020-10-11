@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="card">
+    <div class="card-body">
+        <h4 class="">Edit Sale</h4>
+        <hr>
+        <form action=""  method="post" >{% csrf_token %}
+            <div class="row  ">
+            
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <label for="">Customer Name</label>
+                        <input disabled type="text" class="form-control" name="customer_name" value="{{stock.CustomerName}}">
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="">Customer Contact</label>
+                        <input disabled type="text" class="form-control" name="customer_contact"
+                            value="{{stock.CustomerContact}}">
+                    </div>
+                </div>
+
+                <hr>
+                <br>
+                <div class="col-md-4"></div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Batch No</label>
+                        <input disabled type="text" list="batchList" name="batch_no" id="inputdist" class="form-control" placeholder="" value="{{stock.batch_no}}">
+                        
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Stock Name</label>
+                        <input disabled type="text" name="stock_name" id="stock_name" class="form-control" placeholder=""
+                            aria-describedby="helpId" value="{{stock.stock_name}}">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Size</label>
+                        <input disabled type="text" name="size" id="size" class="form-control" placeholder=""
+                            aria-describedby="helpId" value="{{stock.size}}">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Qty</label>
+                        <input disabled type="number" name="qty" id="s_qty" class="form-control"  onkeyup="multi()" placeholder=""
+                            aria-describedby="helpId" value="{{stock.qty}}">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Price</label>
+                        <input type="nmber" name="price" id="s_price" class="form-control" onkeyup="multi()" placeholder=""
+                            aria-describedby="helpId" value="{{stock.price}}">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">total</label>
+                        <input type="number" name="total" id="s_total" class="form-control" placeholder=""
+                            aria-describedby="helpId" value="{{stock.total}}">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">paid</label>
+                        <input type="number" name="paid" id="paid" class="form-control" placeholder=""
+                            aria-describedby="helpId" value="{{stock.paid}}" onkeyup="remain()">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">remaining</label>
+                        <input type="number" name="remaining" id="remaining" class="form-control" placeholder=""
+                            aria-describedby="helpId" value="{{stock.remaining}}" onkeyup="remain()">
+                    </div>
+                </div>
+                
+                <div class="col-md-2">
+                    <div class="form-group">
+                     <label for="">Remark</label>
+                      <input type="text" class="form-control" name="remark" id="remark" value="{{stock.remark}}">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                     <label for="">Option</label>
+                      <select  class="form-control" name="option_method" id="option_method" value={{stock.option}}>
+
+                        <option value="Counter">Counter</option>
+                        <option value="Parsal">Parsal</option>
+                        
+                      </select>
+                    </div>
+                </div>
+                <button type="submit" name="AddSaleTransBtn" class="btn btn-primary ml-auto mr-3">save</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock main %}

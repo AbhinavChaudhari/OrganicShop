@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+{% for message in messages %}
+     
+        <div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
+            
+                {{message}}
+           
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %}
+
+<div class="card">
+    <div class="card-body">
+        <h4>Sales</h4>
+        <hr>
+        <a href="{% url 'EditSale' %}" class="btn btn-primary">New Sale</a>
+        <a href="{% url 'saleExport' %}" class="btn btn-success ml-3">Export</a>
+        <a href="{% url 'saleImport' %}" class="btn btn-success ml-3">Import</a>
+        <hr>
+        
+
+         
+ 
+    </div>
+</div>
+
+
+
+<div class="">
+
+
+
+    <div class="card mb-4 shadow-lg">
+
+
+        <div class="card-body">
+            <div class="table-responsive ">
+                
+                <table class="table table-bordered" id="searchTable"  data-page-length='10' width="100%" cellspacing="0">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Sr.No</th>
+                            <th>Batch No</th>
+                            <th>Stock Name</th>
+                            <th>Customer Name</th>
+                            <th>QTY</th>
+                            <th>Size</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th>Paid</th>
+                            <th>Remaining</th>
+                            <th>Remark</th>                            
+                            <th>Option</th>
+                            <th>Date</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for sale in st %}
+                        <tr class="text-center">
+                            <td>{{forloop.counter}}</td>
+                            <td>{{ sale.batch_no }}</td>
+                            <td>{{ sale.stock_name }}</td>
+                            <td>{{ sale.CustomerName }}</td>
+                            <td>{{ sale.qty }}</td>   
+                            <td>{{ sale.size }}</td>   
+                            <td>{{ sale.price }}</td>   
+                            <td>{{ sale.total }}</td>   
+                            <td>{{ sale.paid }}</td>   
+                            <td>{{ sale.remaining }}</td>   
+                            <td>{{ sale.remark }}</td>   
+                            <td>{{ sale.option }}</td>   
+                            <td>{{ sale.uploaded_at }}</td>     
+                            <td>
+                                    <a href="{% url 'payhistroy' saleid=sale.id %}"
+                                    class="btn btn-sm btn-success ">PAY</a>
+                                    
+                                    <a href="{% url 'export_pdf'  saleid=sale.id%}"
+                                    class="btn btn-sm btn-warning ">PDF</a>
+                                    
+                            </td>     
+
+                         
+                            
+                          
+
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

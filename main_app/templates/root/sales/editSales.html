@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="card">
+    <div class="card-body">
+        <h4 class="">Manage Sale</h4>
+        <hr>
+        <form action="" id="reForm" method="post"
+            data-cities-url="{% url 'getBatchData' %}">{% csrf_token %}
+            <div class="row ">
+
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <label for="">Customer Name</label>
+                        <input required type="text" class="form-control" name="customer_name"
+                           >
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="">Customer Contact</label>
+                        <input required  type="text" class="form-control" name="customer_contact"
+                            >
+                    </div>
+                </div>
+
+                <hr>
+                <br>
+                <div class="col-md-4"></div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Batch No</label>
+                        <input  type="text" list="batchList" name="batch_no" id="inputdist" class="form-control"
+                            placeholder="">
+                        <datalist id="batchList">
+                            {% for stock in stocks %}
+                            <option>{{stock.batch_sr_no}}</option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Stock Name</label>
+                        <input required type="text" name="stock_name" id="stock_name" class="form-control" placeholder=""
+                            aria-describedby="helpId">
+                    </div>
+                </div>
+                
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                     <label for="">Size</label>
+                     <input  type="text" name="size" id="size" class="form-control" placeholder=""
+                        aria-describedby="helpId" >
+                      <!-- <select   class="form-control" name="size" id="size">
+
+                        <option value="60 ML">60 ML</option>
+                        <option value="90 ML">90 ML</option>
+                        <option value="180 ML">180 ML</option>
+                        <option value="375 ML">375 ML</option>
+                        <option value="750 ML">750 ML</option>
+                        <option value="1000 ML">1000 ML</option>
+                        
+                        
+                      </select> -->
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Qty</label>
+                        <input required type="number" name="qty" id="s_qty" class="form-control" onkeyup="multi()" placeholder=""
+                            aria-describedby="helpId">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Price</label>
+                        <input  required type="nmber" name="price" id="s_price" class="form-control" onkeyup="multi()"
+                            placeholder="" aria-describedby="helpId">
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">total</label>
+                        <input required type="number" name="total" id="s_total" class="form-control" placeholder=""
+                            aria-describedby="helpId" onkeyup="reamin()">
+                    </div>
+                </div>
+                
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Paid</label>
+                        <input required type="nmber" name="paid" id="paid" class="form-control" onkeyup="remain()" placeholder=""
+                            aria-describedby="helpId">
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Remaining</label>
+                        <input required type="nmber" name="remaining" id="remaining" class="form-control" onkeyup="remain()"
+                            placeholder="" aria-describedby="helpId">
+                    </div>
+                </div>
+
+                
+                <div class="col-md-2">
+                    <div class="form-group">
+                     <label for="">Remark</label>
+                     <input required type="text" class="form-control" name="remark" id="remark">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                     <label for="">Option</label>
+                      <select  class="form-control" name="option_method" id="option_method">
+
+                        <option value="Counter">Counter</option>
+                        <option value="Parsal">Parsal</option>
+                        
+                      </select>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="row">
+            <button type="submit" name="AddSaleTransBtn" class="btn btn-primary ml-auto mr-3">Add</button>
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock main %}

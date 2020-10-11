@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+
+
+<div class="">
+    <h4 class="text-uppercase card  p-3"> purchase</h4>
+      {% for message in messages %}
+     
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            
+                {{message}}
+           
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %}
+
+    <div class=""> 
+      
+
+        <form action="#" method="POST"> {% csrf_token %}
+            <div class="row">
+
+                <div class="col-md-2">
+                    <div class="form-group form-group-sm">
+                        <label for="">Vandor Name</label>
+                        <input required type="text" class="form-control text-center" name="vandor_name" id="vandor_name"
+                            aria-describedby="helpId" placeholder="Enter Vandor Name">
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group form-group-sm">
+                        <label for="">Vandor M.NO</label>
+                        <input required type="text" class="form-control text-center" name="mobile_no" id="mobile_no"
+                            aria-describedby="helpId" placeholder="Enter Vandor Mobile No">
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Batch No</label>
+                        <input required type="text" class="form-control text-center" name="batch_sr_no" id="batch_sr_no"
+                            aria-describedby="helpId" required placeholder="Batch Serial No">
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Stock Name</label>
+                        <input required type="text" class="form-control text-center" name="stock_name" id="stock_name"
+                            aria-describedby="helpId" required placeholder="Stock Name">
+
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Pack</label>
+                        <input required type="number" class="form-control text-center" name="pack" id="pack"
+                            aria-describedby="helpId" required placeholder="Pack">
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group form-group-sm">
+                        <label for="">Quantity</label>
+                        <input required type="number" class="form-control text-center" name="qty" id="qty"
+                            aria-describedby="helpId" onKeyUp="multiply()" required placeholder="Quantity">
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Size Number</label>
+                        <input type="text " class="form-control" name="size" id="size">
+                       
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label for="">Size Unit</label>
+                       
+                      <select  class="form-control" name="unit" id="unit" >
+                        <option value="KG">KG</option>
+                        <option value="Gram">Gram</option>
+                        <option value="LTR">LTR</option>
+                      
+                        
+                        
+                      </select>
+                      
+                    </div>
+                </div>
+              
+
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Vandor Price</label>
+                        <input required type="number" class="form-control text-center" onKeyUp="multiply()" name="vandor_price" id="vandor_price"
+                            aria-describedby="helpId" required placeholder="Vandor Price">
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group form-group-sm">
+                        <label for="">Selling Price</label>
+                        <input required type="number" class="form-control text-center" name="selling_price" id="selling_price"
+                            aria-describedby="helpId" required placeholder="Selling Price">
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Total</label>
+                        <input required type="text" class="form-control text-center" name="total" id="s_total"
+                            aria-describedby="helpId" placeholder="Total" onkeyup="remain()">
+
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Paid</label>
+                        <input required type="nmber" name="paid" id="paid" class="form-control" onkeyup="remain()" placeholder="Paid"
+                            aria-describedby="helpId">
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="">Remaining</label>
+                        <input required type="nmber" name="remaining" id="remaining" class="form-control" onkeyup="remain()"
+                            placeholder="Remaining" aria-describedby="helpId">
+                    </div>
+                </div>
+                <div class="col-md-2 ">
+                    <div class="form-group">
+                     <label for="">Remark</label>
+                     <input required type="text" class="form-control" name="remark" id="remark" placeholder="Remark" >
+                      
+                    </div>
+
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success mt-4 px-3  "> + Add</button>
+                </div>
+               
+                
+        </form>
+    </div>
+</div>
+
+
+<a href="{% url 'purchaseExport' %}" class="btn btn-warning mb-2 ml-auto ">Export</a>
+<div class="">
+
+
+
+
+    <div class="card mb-4 shadow-lg">
+
+
+        <div class="card-body">
+            <div class="table-responsive ">
+                <table class="table table-bordered" id="searchTable"  data-page-length='10' width="100%" cellspacing="0">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Sr.No</th>
+                            <th>Batch No</th>
+                            <th>Stock Name</th>
+                            <th>QTY</th>
+                            <th>Pack</th>
+                            <th>Size</th>
+                            <th>Vendor price</th>
+                            <th>Total</th>
+                            <th>Paid</th>
+                            <th>Remaining</th>
+
+                            <th>Selling Price</th>
+                            <th>Date</th>
+                            <th>Remark</th>
+                            <th>Vandor Name</th>
+                            <th>Method</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for purchase in purchases %}
+                        <tr class='text-center'>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{ purchase.batch_sr_no }}</td>
+                            <td>{{ purchase.stock_name }}</td>
+                            <td>{{ purchase.qty }}</td>
+                            <td>{{ purchase.pack }}</td>
+                            <td>{{ purchase.size }}</td>
+                            <td>{{ purchase.vandor_price }}</td>
+                            <td>{{ purchase.total }}</td>
+                            <td>{{ purchase.paid }}</td>
+                            <td>{{ purchase.remaining }}</td>
+                            <td>{{ purchase.selling_price }}</td>
+                            <td>{{ purchase.date }}</td>
+                            <td>{{ purchase.remark }}</td>
+                            <td>{{ purchase.vandor_name }}</td>
+                            <td class="text-center">
+                                
+                                    <a href="{% url 'purchasehistory' purchaseid=purchase.id %}"
+                                    class="btn btn-sm btn-warning ">Pay</a> 
+                                    <a
+                                    href="{% url 'purchaseDelete' purchaseid=purchase.id %}"
+                                    class="btn btn-sm btn-danger">Delete</a></td>
+
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock main %}

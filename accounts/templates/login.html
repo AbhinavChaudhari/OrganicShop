@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrganicShop-Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %} ">
+     <link href=" {% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+     <link href=" {% static 'css/styles.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+     
+        <div class="container"> 
+          <div class="card login-card">
+            <div class="row no-gutters">
+              <div class="col-md-5">
+                <img src="{% static '\assets\img\organic.jpg' %} " alt="login" class="login-card-img">
+              </div>
+              <div class="col-md-7">
+                <div class="card-body">
+                  <div class="brand-wrapper">
+                    <h1>Organic<span class="text-success">Shop</span>  </h1>
+                  </div>
+                  
+                  <p class="login-card-description"><span class="text-success">L</span>ogin</p>
+                  <form action="#!" method="POST">{% csrf_token %}
+                      <div class="form-group">
+                        <label for="username" class="sr-only">Username</label>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="UserName">
+                      </div>
+                      <div class="form-group mb-4">
+                        <label for="password" class="sr-only">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="***********">
+                      </div>
+                      <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Login">
+                    </form>
+                  
+                   
+                   
+                </div>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      <!-- -->
+      </main>
+      <div>
+        {% for message in messages   %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+      </div>
+       <script src="{% static 'js/jqurey.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

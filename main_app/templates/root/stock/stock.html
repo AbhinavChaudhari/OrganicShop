@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+
+<!-- table  -->
+
+<div class="">
+<h4 class="text-uppercase card p-3"> Stock</h4>
+
+<a href="{% url 'stockExport' %}" class="btn btn-warning mt-2 mb-2 ml-auto">Export</a>
+<a href="{% url 'import' %}" class="btn btn-warning mt-2 mb-2 ml-auto">Import</a>
+
+    <div class="card mb-4 shadow-lg">
+
+
+        <div class="card-body">
+            <div class="table-responsive ">
+                
+                <table class="table table-bordered" id="searchTable"  data-page-length='10' width="100%" cellspacing="0">
+                    <thead>
+                        <tr class="text-center">
+                        <th>ID</th>
+                            <th>Batch No</th>
+                            <th>Stock Name</th>
+                            <th>QTY</th>
+                            <th>pack</th>
+                            <th>size</th>
+                          
+                            <th>Selling Price</th>
+                            <th>Date</th>
+                            
+
+                        </tr>
+                    </thead>
+                  
+
+                    <tbody>
+                        {% for stock in stocks %}
+                        <tr class="text-center">
+                            <td>{{forloop.counter}}</td>
+                            <td>{{ stock.batch_sr_no }}</td>
+                            <td>{{ stock.stock_name }}</td>
+                            <td>{{ stock.qty }}</td>
+                            <td>{{ stock.pack }}</td>
+                            <td>{{ stock.size }}</td>
+                            <td>{{ stock.selling_price }}</td>
+                            <td>{{ stock.date }}</td>
+                          
+                           
+                            
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock main %}

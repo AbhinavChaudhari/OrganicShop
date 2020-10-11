@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+
+
+<div class="container-fluid">
+    <form action="#" method="POST"> {% csrf_token %}
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center text-uppercase card mb-4"> purchase Edit</h1>
+
+
+                <div class="row">
+                    <div class="col-md-3 mx-auto">
+                        <div class="form-group">
+                            <label for="">Vandor Name</label>
+                            <input  type="text" class="form-control text-center" name="vandor_name" id="vandor_name"
+                                aria-describedby="helpId" value={{ allPurchaseLists.vandor_name }}   placeholder="Enter Vandor Name">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 mx-auto">
+                        <div class="form-group">
+                            <label for="">Mobile No</label>
+                            <input  type="text" class="form-control text-center" name="mobile_no" id="mobile_no"
+                                aria-describedby="helpId" value={{ allPurchaseLists.mobile_no }} placeholder="Enter Vandor Mobile No">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 mx-auto">
+                        <div class="form-group">
+                            <label for="">Batch No</label>
+                            <input  type="text" class="form-control text-center" name="batch_sr_no" id="batch_sr_no"
+                                aria-describedby="helpId" value={{ allPurchaseLists.batch_sr_no }} required placeholder="Batch Serial No">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 mx-auto">
+                        <div class="form-group">
+                            <label for="">Stock Name</label>
+                            <input  type="text" class="form-control text-center" name="stock_name" id="stock_name"
+                                aria-describedby="helpId" value={{ allPurchaseLists.stock_name }} required placeholder="Stock Name">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 mx-auto">
+                        <div class="form-group">
+                            <label for="">Vandor Price</label>
+                            <input   type="number" class="form-control text-center" name="vandor_price" id="vandor_price"
+                                aria-describedby="helpId" value={{ allPurchaseLists.vandor_price }} required placeholder="Vandor Price" onKeyUp="multiply()">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 mx-auto">
+                        <div class="form-group">
+                            <label for="">Pack</label>
+                            <input disabled type="number" class="form-control text-center" name="pack" id="pack"
+                                aria-describedby="helpId" value={{ allPurchaseLists.pack }} required placeholder="Pack">
+
+                        </div>
+                    </div>
+
+                    
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="">Size</label>
+                            <input disabled type="text" class="form-control" name="size" id="size" value="{{allPurchaseLists.size}}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mx-auto">
+                        <div class="form-group">
+                            <label for="">QTY</label>
+                            <input disabled type="number" class="form-control text-center" name="qty" id="qty"
+                                aria-describedby="helpId" value="{{ allPurchaseLists.qty }}"  required placeholder="Quantity" onKeyUp="multiply()">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 mx-auto">
+                        <div class="form-group">
+                            <label for="">Selling Price</label>
+                            <input type="number" class="form-control text-center" name="selling_price"
+                                id="selling_price" value={{ allPurchaseLists.selling_price }} aria-describedby="helpId" required placeholder="Selling  Price">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 mx-auto">
+                        <div class="form-group">
+                            <label for="">Total</label>
+                            <input disabled type="text" class="form-control text-center" name="total" id="s_total"
+                                aria-describedby="helpId" placeholder="Total" value={{ allPurchaseLists.total }} onkeyup="remain()">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 mx-auto">
+                        <div class="form-group">
+                            <label for="">Paid</label>
+                            <input disabled type="text" class="form-control text-center" name="paid" id="paid"
+                                aria-describedby="helpId" placeholder="Paid" onkeyup="remain()" value={{ allPurchaseLists.paid }}>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 mx-auto">
+                        <div class="form-group">
+                            <label for="">Remaining</label>
+                            <input  type="text" class="form-control text-center" name="remaining" id="remaining"
+                                aria-describedby="helpId" placeholder="Remaining" onkeyup="remain()" value={{ allPurchaseLists.remaining }}>
+
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-3">
+                        <div class="form-group">
+                         <label for="">Remark</label>
+                          <input disabled type="text" class="form-control text-center" name="remark" id="remark"
+                                aria-describedby="helpId" placeholder="Remark"  value={{ allPurchaseLists.remark }}>
+                         
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center mb-4">
+                      <button type="submit" class="bg-primary btn ">Save</button>
+                        
+                    </div>
+    </form>
+</div>
+
+
+
+
+{% endblock main %}

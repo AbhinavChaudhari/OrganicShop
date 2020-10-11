@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+{% for message in messages %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+
+<div class="card text-center">
+
+    <form action="{% url 'backuprestore' %}" method="POST"> {% csrf_token %}
+        <div class="row my-4">
+            <div class="col-md-12">
+                <label for="">New File will be created locally.</label><br>
+                <button class="btn btn-success" name="LocalBack" type="submit">Local Backup</button>
+            </div>
+
+
+        </div>
+    </form>
+
+</div>
+
+<div class="card mt-4">
+
+    <form action="{% url 'backuprestore' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <div class="row my-4">
+            <div class="col-md-12 text-center">
+                <label for="">New File will be created locally.</label><br>
+                
+                               
+                <button class="btn btn-success" name="restorefile" type="submit">Restore</button>
+            </div>
+
+
+        </div>
+
+    </form>
+
+</div>
+
+
+{% endblock main %}

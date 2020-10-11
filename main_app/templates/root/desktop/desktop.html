@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<br>
+<br>
+<!-- Content Row -->
+
+
+
+
+
+<!-- donat chart -->
+<div class="row ">
+  <div class="col-lg-6">
+    <div class="card mb-9">
+      <div class="card-header">
+        <i class="fas fa-chart-bar mr-1"></i>
+        Total Sale (Monthly)
+      </div>
+      <div class="card-body "><canvas id="myBarChart" width="full"></canvas></div>
+      <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card mb-9">
+      <div class="card-header">
+        <i class="fas fa-chart-pie mr-1"></i>
+        Counter vs Parsal
+      </div>
+      <div class="card-body"><canvas id="myPieChart" width="full%"></canvas></div>
+      <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<h1 class="text-center ">
+  <hr>
+  Welcome To Shop
+  <hr>
+</h1>
+
+
+
+{% endblock main %}

@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+
+
+<div class="">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center text-uppercase card mt-3"> Expance</h1>
+
+
+            <form action="#" method="POST"> {% csrf_token %}
+                <div class="row mt-5">
+                    <div class="col-md-3 mx-auto ">
+                        <div class="form-group text-center text-center">
+                            <label for="">Name</label>
+                            <input required type="text" class="form-control text-center" name="name" id="name"
+                                aria-describedby="helpId" placeholder="Enter  Name">
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mx-auto ">
+                        <div class="form-group text-center text-center">
+                            <label for="" >Remark</label>
+                            <input required type="text" class="form-control text-center" name="remark" id="remark"
+                                aria-describedby="helpId" placeholder="remark">
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mx-auto ">
+                        <div class="form-group text-center text-center">
+                            <label for="" >price</label>
+                            <input required type="number" class="form-control text-center" name="price" id="price"
+                                aria-describedby="helpId" placeholder="price">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 text-center mb-4 mt-3">
+                    <button type="submit" class="bg-success btn ">Add</button>
+                      
+                  </div>
+
+            </form>
+
+
+
+
+
+            <!-- table  -->
+
+
+<div class="">
+
+<a href="{% url 'expanceExport' %}" class="btn btn-warning mb-2 ml-auto">Excelsheet</a>
+
+    <div class="card mb-4 shadow-lg">
+
+
+        <div class="card-body">
+            <div class="table-responsive ">
+                
+                <table class="table table-bordered" id="searchTable"  data-page-length='10' width="100%" cellspacing="0">
+                     <thead>
+                        <tr class="text-center">
+                        <th>Id</th>
+                            <th>Name</th>
+                            <th>Remark</th>
+                            <th>Price</th>
+                            <th>Date</th>
+                            <th>Edit / Delete</th>
+                           
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    
+                         {% for expance in exp %}
+                        <tr class="text-center">
+                            <td>{{forloop.counter}}</td>
+                            <td>{{ expance.name }}</td>
+                            <td>{{ expance.remark }}</td>
+                            <td>{{ expance.price }}</td>
+                            <td>{{ expance.uploaded_at }}</td>
+                            <td class="text-center"><a href="{% url 'expanceEdit' expanceid=expance.id %}" class="btn btn-sm btn-warning ">Edit</a> <a href="{% url 'expanceDelete' expanceid=expance.id %}" class="btn btn-sm btn-danger">Delete</a></td>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+            {% endblock main %}
